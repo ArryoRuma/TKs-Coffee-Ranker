@@ -29,7 +29,7 @@ export default async function EntryDetailPage({
             </CardDescription>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Badge>{entry.rating}/10</Badge>
+            <Badge>Sip Score {entry.rating}/10</Badge>
             <Badge>{entry.origin}</Badge>
             <Badge>{entry.brewMethod}</Badge>
             <Badge>{entry.roastLevel}</Badge>
@@ -44,7 +44,7 @@ export default async function EntryDetailPage({
             ))}
           </div>
           <p className="text-sm text-stone-600">
-            Would order again: {entry.wouldOrderAgain ? "Yes" : "No"}
+            Save for Later: {entry.wouldOrderAgain ? "Yes" : "No"}
           </p>
         </Card>
       </main>
