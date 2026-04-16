@@ -18,7 +18,7 @@ export function EntryCard({ entry }: { entry: CoffeeEntry }) {
             {entry.cafe} • {entry.roaster} • {entry.location}
           </CardDescription>
         </div>
-        <Badge>{entry.rating}/10</Badge>
+        <Badge>Sip Score {entry.rating}/10</Badge>
       </div>
       <p className="text-sm text-stone-700">{entry.reviewBody}</p>
       <div className="flex flex-wrap gap-2">

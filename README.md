@@ -1,6 +1,6 @@
-# TK's Coffee Ranker
+# Sippd
 
-A product-minded MVP scaffold for a social coffee tracking app inspired by Untappd + Letterboxd.
+Sippd is a social coffee logging app with Letterboxd/Untappd energy — your personal coffee diary, taste tracker, and memory system.
 
 ## Stack
 
@@ -15,12 +15,15 @@ A product-minded MVP scaffold for a social coffee tracking app inspired by Untap
 
 - Landing page
 - Auth scaffold (`/auth/sign-in`)
-- Dashboard (`/dashboard`)
-- Add entry flow (`/entries/new`)
-- Diary/log (`/diary`)
-- Entry detail (`/entries/[id]`)
+- Home (`/dashboard`)
+- Log a Sip (`/entries/new`)
+- Sip Log (`/diary`)
+- Top Sips (`/top-sips`)
+- Saved Sips (`/saved-sips`)
+- Wanna Sip (`/wanna-sip`)
+- Sip detail (`/entries/[id]`)
 - Profile (`/profile`)
-- Favorites + want-to-try lists (`/lists`)
+- Legacy route redirect (`/lists` → `/saved-sips`)
 
 ## Domain model
 
@@ -35,7 +38,7 @@ A product-minded MVP scaffold for a social coffee tracking app inspired by Untap
 
 Future scaffolds are noted in Prisma TODOs for follows, comments, likes, activity feed, shop pages, and recommendation signals.
 
-## Why a 1-10 rating scale?
+## Why a 1-10 Sip Score scale?
 
 Coffee tasting often needs finer granularity than 1-5 (especially between cups that are all “good”). 1-10 is still intuitive for users while preserving meaningful ranking and trend analysis.
 
@@ -72,6 +75,9 @@ app/
   diary/
   entries/[id]/
   entries/new/
+  top-sips/
+  saved-sips/
+  wanna-sip/
   lists/
   profile/
 components/
@@ -91,6 +97,7 @@ prisma/
 - TODO: social follows
 - TODO: comments
 - TODO: likes
-- TODO: public lists + sharing
+- TODO: public Top Sips/Saved Sips/Wanna Sip sharing
 - TODO: cafe/shop public pages
 - TODO: recommendation engine based on taste graph
+- TODO: expand the Sippd brand system (voice guidelines, themed components, and creator profile styling)

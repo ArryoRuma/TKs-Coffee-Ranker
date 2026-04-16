@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TK's Coffee Ranker",
-  description: "A social coffee tracking prototype inspired by Untappd and Letterboxd.",
+  title: "Sippd",
+  description: "Your Taste, Logged — a social coffee diary for tracking every sip.",
 };
 
 export default function RootLayout({

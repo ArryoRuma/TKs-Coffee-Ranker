@@ -27,7 +27,7 @@ const defaults: EntryFormState = {
   rating: "8",
   reviewBody: "",
   dateConsumed: "",
-  wouldOrderAgain: true,
+  wouldOrderAgain: false,
   visibility: "PUBLIC",
 };
 
@@ -52,9 +52,7 @@ export function AddEntryForm() {
       return;
     }
 
-    setResult(
-      `Saved draft: ${parsed.data.title} (${parsed.data.rating}/10). Hook this up to Prisma create in next step.`
-    );
+    setResult(`Draft saved locally: ${parsed.data.title} (Sip Score ${parsed.data.rating}/10).`);
     setForm({ ...defaults });
   }
 
@@ -62,7 +60,7 @@ export function AddEntryForm() {
     <form onSubmit={onSubmit} className="space-y-4">
       <div className="grid gap-4 md:grid-cols-2">
         <Input
-          placeholder="Entry title"
+          placeholder="Sip title"
           value={form.title}
           onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
         />
@@ -85,6 +83,7 @@ export function AddEntryForm() {
           type="number"
           min={1}
           max={10}
+          aria-label="Sip Score"
           value={form.rating}
           onChange={(e) => setForm((prev) => ({ ...prev, rating: e.target.value }))}
         />
@@ -95,7 +94,7 @@ export function AddEntryForm() {
         />
       </div>
       <Textarea
-        placeholder="What did it taste like?"
+        placeholder="How did it taste?"
         value={form.reviewBody}
         onChange={(e) => setForm((prev) => ({ ...prev, reviewBody: e.target.value }))}
       />
@@ -108,7 +107,7 @@ export function AddEntryForm() {
               setForm((prev) => ({ ...prev, wouldOrderAgain: e.target.checked }))
             }
           />
-          Would order again
+          Save for Later
         </label>
         <label className="inline-flex items-center gap-2">
           Visibility
@@ -128,7 +127,7 @@ export function AddEntryForm() {
           </select>
         </label>
       </div>
-      <Button type="submit">Save Entry Draft</Button>
+      <Button type="submit">Add to Sip Log</Button>
       {result ? <p className="text-sm text-stone-700">{result}</p> : null}
     </form>
   );

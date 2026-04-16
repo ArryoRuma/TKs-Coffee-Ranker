@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f5f4;
-  --foreground: #1c1917;
+  --background: #f7f3ed;
+  --foreground: #1f1a16;
 }
 
 @theme inline {
@@ -15,3 +15,5 @@ body {
   color: var(--foreground);
   font-family: "Inter", "Avenir Next", "Segoe UI", sans-serif;
 }
+
+/* TODO: Expand Sippd brand tokens (type scale, semantic color roles, and spacing rhythm). */

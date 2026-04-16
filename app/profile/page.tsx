@@ -20,7 +20,7 @@ export default function ProfilePage() {
         <Card className="space-y-2">
           <CardTitle>Taste identity</CardTitle>
           <CardDescription>
-            {entries.length} logs • {entries.filter((entry) => entry.favorite).length} favorites
+            {entries.length} sips • {entries.filter((entry) => entry.favorite).length} top picks
           </CardDescription>
           <p className="text-sm text-stone-700">
             Prefers light to medium roasts with floral and citrus notes.
