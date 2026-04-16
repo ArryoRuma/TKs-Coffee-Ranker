@@ -23,7 +23,7 @@ Sippd is a social coffee logging app with Letterboxd/Untappd energy — your per
 - Wanna Sip (`/wanna-sip`)
 - Sip detail (`/entries/[id]`)
 - Profile (`/profile`)
-- Legacy combined lists view (`/lists`)
+- Legacy route redirect (`/lists` → `/saved-sips`)
 
 ## Domain model
 

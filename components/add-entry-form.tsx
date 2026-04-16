@@ -27,7 +27,7 @@ const defaults: EntryFormState = {
   rating: "8",
   reviewBody: "",
   dateConsumed: "",
-  wouldOrderAgain: true,
+  wouldOrderAgain: false,
   visibility: "PUBLIC",
 };
 
@@ -52,9 +52,7 @@ export function AddEntryForm() {
       return;
     }
 
-    setResult(
-      `Added to Sip Log: ${parsed.data.title} (Sip Score ${parsed.data.rating}/10).`
-    );
+    setResult(`Draft saved locally: ${parsed.data.title} (Sip Score ${parsed.data.rating}/10).`);
     setForm({ ...defaults });
   }
 
