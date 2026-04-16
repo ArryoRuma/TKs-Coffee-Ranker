@@ -24,8 +24,8 @@ export async function AppHeader({ activePath }: { activePath: string }) {
   return (
     <header className="relative border-b border-stone-200 bg-stone-50/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
-        <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-stone-900">
-          <Image src="/logo.svg" alt="Sippd logo" width={150} height={50} priority />
+        <Link href="/" className="flex items-center">
+          <Image src="/logo-horiz.svg" alt="Sippd logo" width={1501} height={1250} className="h-12 w-auto" priority />
         </Link>
         <nav className="hidden gap-4 md:flex">
           {navItems.map((item) => (
