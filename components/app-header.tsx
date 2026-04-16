@@ -21,8 +21,8 @@ export function AppHeader({ activePath }: { activePath: string }) {
     <header className="border-b border-stone-200 bg-stone-50/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
         <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-stone-900">
-          <Image src="/logo.svg" alt="Sippd logo" width={28} height={28} priority />
-          <span>Sippd</span>
+          <Image src="/logo.svg" alt="Sippd logo" width={150} height={50} priority />
+          
         </Link>
         <nav className="hidden gap-4 md:flex">
           {navItems.map((item) => (
