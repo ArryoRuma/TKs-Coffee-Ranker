@@ -4,7 +4,7 @@ import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { coffeeEntries, demoUserId, wantToTry } from "@/lib/mock-data";
 
 export default function ListsPage() {
-  const favorites = coffeeEntries.filter((entry) => entry.userId === demoUserId && entry.favorite);
+  const topSips = coffeeEntries.filter((entry) => entry.userId === demoUserId && entry.favorite);
 
   return (
     <div className="min-h-screen">
@@ -13,11 +13,11 @@ export default function ListsPage() {
         <Card className="space-y-3">
           <CardTitle>Top Sips</CardTitle>
           <CardDescription>Saved cups worth ordering again.</CardDescription>
-          {favorites.length ? (
-            favorites.map((favorite) => (
-              <div key={favorite.id} className="rounded-lg border border-stone-200 p-3">
-                <p className="font-medium">{favorite.title}</p>
-                <p className="text-sm text-stone-600">{favorite.cafe} • {favorite.location}</p>
+          {topSips.length ? (
+            topSips.map((topSip) => (
+              <div key={topSip.id} className="rounded-lg border border-stone-200 p-3">
+                <p className="font-medium">{topSip.title}</p>
+                <p className="text-sm text-stone-600">{topSip.cafe} • {topSip.location}</p>
               </div>
             ))
           ) : (
