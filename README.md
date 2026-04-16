@@ -4,10 +4,11 @@ Sippd is a social coffee logging app with Letterboxd/Untappd energy — your per
 
 ## Stack
 
-- Next.js (App Router) + TypeScript
+- Nuxt 4 + TypeScript
+- Nuxt UI
+- Supabase module integration (demo-mode data currently served locally)
 - Tailwind CSS
 - shadcn/ui-style component primitives (`components/ui`)
-- Prisma + PostgreSQL
 - Zod validation
 - Auth scaffold with demo-user mode
 
@@ -52,16 +53,13 @@ Coffee tasting often needs finer granularity than 1-5 (especially between cups t
    ```bash
    cp .env.example .env
    ```
-3. Generate Prisma client
+3. Configure Supabase values for module wiring
    ```bash
-   npx prisma generate
+   # values are placeholders by default in .env.example
+   SUPABASE_URL=...
+   SUPABASE_ANON_KEY=...
    ```
-4. (Optional) seed if Postgres is running locally
-   ```bash
-   npx prisma db push
-   npx prisma db seed
-   ```
-5. Run app
+4. Run app
    ```bash
    npm run dev
    ```
@@ -69,26 +67,10 @@ Coffee tasting often needs finer granularity than 1-5 (especially between cups t
 ## Project structure
 
 ```text
-app/
-  auth/sign-in/
-  dashboard/
-  diary/
-  entries/[id]/
-  entries/new/
-  top-sips/
-  saved-sips/
-  wanna-sip/
-  lists/
-  profile/
-components/
-  ui/
-lib/
-  auth.ts
-  mock-data.ts
-  validation/entry.ts
-prisma/
-  schema.prisma
-  seed.ts
+nuxt/
+  app.vue
+  pages/index.vue
+  server/api/entries.get.ts
 ```
 
 ## MVP next steps
