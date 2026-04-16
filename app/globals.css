@@ -13,7 +13,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Fraunces", "Inter", "Avenir Next", "Segoe UI", sans-serif;
+  font-family: "Inter", "Avenir Next", "Segoe UI", sans-serif;
 }
 
 /* TODO: Expand Sippd brand tokens (type scale, semantic color roles, and spacing rhythm). */

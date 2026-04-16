@@ -12,9 +12,7 @@ export default function WannaSipPage() {
           wantToTry.map((sip) => (
             <Card key={sip.id} className="space-y-1">
               <CardTitle>{sip.drink}</CardTitle>
-              <CardDescription>
-                Wanna Sip • {sip.cafe} • {sip.city}
-              </CardDescription>
+              <CardDescription>{sip.cafe} • {sip.city}</CardDescription>
             </Card>
           ))
         ) : (

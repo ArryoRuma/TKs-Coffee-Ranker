@@ -17,7 +17,7 @@ export default function SavedSipsPage() {
             <Card key={sip.id} className="space-y-1">
               <CardTitle>{sip.title}</CardTitle>
               <CardDescription>
-                Save for Later • {sip.cafe} • {sip.location}
+                Saved Sip • {sip.cafe} • {sip.location}
               </CardDescription>
             </Card>
           ))
