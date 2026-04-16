@@ -9,7 +9,7 @@ export default function ListsPage() {
 
   return (
     <div className="min-h-screen">
-      <AppHeader activePath="/saved-sips" />
+      <AppHeader activePath="" />
       <main className="mx-auto grid w-full max-w-6xl gap-5 px-5 py-8 md:grid-cols-3">
         <Card className="space-y-3">
           <CardTitle>Top Sips</CardTitle>
@@ -48,7 +48,7 @@ export default function ListsPage() {
               <div key={item.id} className="rounded-lg border border-stone-200 p-3">
                 <p className="font-medium">{item.drink}</p>
                 <p className="text-sm text-stone-600">{item.cafe} • {item.city}</p>
-                <Badge className="mt-2">Add to Wanna Sip</Badge>
+                <Badge className="mt-2">Wanna Sip</Badge>
               </div>
             ))
           ) : (

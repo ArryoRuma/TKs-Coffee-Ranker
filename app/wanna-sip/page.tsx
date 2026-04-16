@@ -13,7 +13,7 @@ export default function WannaSipPage() {
             <Card key={sip.id} className="space-y-1">
               <CardTitle>{sip.drink}</CardTitle>
               <CardDescription>
-                Add to Wanna Sip • {sip.cafe} • {sip.city}
+                Wanna Sip • {sip.cafe} • {sip.city}
               </CardDescription>
             </Card>
           ))
