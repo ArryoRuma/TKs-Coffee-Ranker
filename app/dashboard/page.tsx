@@ -17,7 +17,7 @@ export default function DashboardPage() {
         <section className="grid gap-4 md:grid-cols-3">
           <Card>
             <CardTitle>{entries.length}</CardTitle>
-            <CardDescription>Total logs this month</CardDescription>
+            <CardDescription>Total logs</CardDescription>
           </Card>
           <Card>
             <CardTitle>{entries.filter((e) => e.favorite).length}</CardTitle>

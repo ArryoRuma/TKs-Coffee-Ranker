@@ -8,9 +8,9 @@ import { coffeeEntries } from "@/lib/mock-data";
 export default async function EntryDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }) {
-  const { id } = await params;
+  const { id } = params;
   const entry = coffeeEntries.find((item) => item.id === id);
 
   if (!entry) {
