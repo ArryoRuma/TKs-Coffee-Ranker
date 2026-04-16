@@ -11,11 +11,13 @@ export default function DiaryPage() {
     <div className="min-h-screen">
       <AppHeader activePath="/diary" />
       <main className="mx-auto w-full max-w-4xl px-5 py-8">
-        <h1 className="mb-5 text-2xl font-semibold tracking-tight">Diary</h1>
+        <h1 className="mb-5 text-2xl font-semibold tracking-tight">Sip Log</h1>
         <div className="space-y-4">
-          {entries.map((entry) => (
-            <EntryCard key={entry.id} entry={entry} />
-          ))}
+          {entries.length ? (
+            entries.map((entry) => <EntryCard key={entry.id} entry={entry} />)
+          ) : (
+            <p className="text-stone-600">Your Sip Log is empty. Start with your first great cup.</p>
+          )}
         </div>
       </main>
     </div>

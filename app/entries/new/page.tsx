@@ -8,9 +8,9 @@ export default function NewEntryPage() {
       <AppHeader activePath="/entries/new" />
       <main className="mx-auto w-full max-w-3xl px-5 py-8">
         <Card className="space-y-4">
-          <CardTitle>Add a coffee entry</CardTitle>
+          <CardTitle>Log a Sip</CardTitle>
           <CardDescription>
-            Uses a Zod-backed client form today. Wire this to Prisma create mutation next.
+            Add to Sip Log with a quick flavor snapshot. This form is validated with Zod and ready for a Prisma create action.
           </CardDescription>
           <AddEntryForm />
         </Card>

@@ -10,20 +10,20 @@ export default function SignInPage() {
       <AppHeader activePath="" />
       <main className="mx-auto w-full max-w-xl px-5 py-10">
         <Card className="space-y-4">
-          <CardTitle>Auth scaffold</CardTitle>
+          <CardTitle>Welcome to Sippd</CardTitle>
           <CardDescription>
-            MVP runs in demo-user mode by default so product exploration is instant.
-            Replace this with NextAuth/Clerk when ready.
+            Jump in with demo mode and explore the full Sippd flow instantly.
           </CardDescription>
           <div className="space-y-3 text-sm text-stone-700">
-            <p>Email/password, OAuth, and sessions are intentionally TODOs for speed.</p>
+            <p>Email/password, OAuth, and sessions are intentionally staged for a later pass.</p>
             <ul className="list-disc pl-5">
               <li>TODO: Add provider + real session strategy</li>
-              <li>TODO: Gate private diary visibility by follower graph</li>
+              <li>TODO: Gate private Sip Log visibility by follower graph</li>
+              <li>TODO: Add profile accents for deeper Sippd brand personalization</li>
             </ul>
           </div>
           <Link href="/dashboard">
-            <Button>Continue as demo user</Button>
+            <Button>Continue to Home</Button>
           </Link>
         </Card>
       </main>

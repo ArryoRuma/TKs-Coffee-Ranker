@@ -4,10 +4,12 @@ import { getCurrentUser } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/diary", label: "Diary" },
-  { href: "/entries/new", label: "Add Entry" },
-  { href: "/lists", label: "Lists" },
+  { href: "/dashboard", label: "Home" },
+  { href: "/entries/new", label: "Log a Sip" },
+  { href: "/diary", label: "Sip Log" },
+  { href: "/top-sips", label: "Top Sips" },
+  { href: "/saved-sips", label: "Saved Sips" },
+  { href: "/wanna-sip", label: "Wanna Sip" },
   { href: "/profile", label: "Profile" },
 ];
 
@@ -18,7 +20,7 @@ export function AppHeader({ activePath }: { activePath: string }) {
     <header className="border-b border-stone-200 bg-stone-50/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
         <Link href="/" className="text-lg font-semibold tracking-tight text-stone-900">
-          TK&apos;s Coffee Ranker
+          Sippd
         </Link>
         <nav className="hidden gap-4 md:flex">
           {navItems.map((item) => (
