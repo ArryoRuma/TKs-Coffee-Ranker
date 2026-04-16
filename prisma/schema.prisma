@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Visibility {
+  PUBLIC
+  PRIVATE
+  FRIENDS
+}
+
+model User {
+  id            String        @id @default(cuid())
+  email         String        @unique
+  username      String        @unique
+  displayName   String
+  bio           String?
+  avatarUrl     String?
+  homeCity      String?
+  favoriteDrink String?
+  coffeeEntries CoffeeEntry[]
+  reviews       Review[]
+  lists         List[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Cafe {
+  id        String        @id @default(cuid())
+  name      String
+  city      String
+  country   String
+  entries   CoffeeEntry[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model Roaster {
+  id        String        @id @default(cuid())
+  name      String
+  country   String?
+  entries   CoffeeEntry[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model CoffeeEntry {
+  id               String      @id @default(cuid())
+  userId           String
+  title            String
+  drinkType        String
+  cafeId           String?
+  roasterId        String?
+  origin           String?
+  roastLevel       String?
+  brewMethod       String?
+  tastingNotes     String[]
+  rating           Int
+  reviewBody       String?
+  dateConsumed     DateTime
+  location         String?
+  imageUrl         String?
+  wouldOrderAgain  Boolean     @default(true)
+  favorite         Boolean     @default(false)
+  visibility       Visibility  @default(PUBLIC)
+  user             User        @relation(fields: [userId], references: [id])
+  cafe             Cafe?       @relation(fields: [cafeId], references: [id])
+  roaster          Roaster?    @relation(fields: [roasterId], references: [id])
+  review           Review?
+  tags             Tag[]
+  listItems        ListItem[]
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  @@index([userId, dateConsumed])
+}
+
+model Review {
+  id            String      @id @default(cuid())
+  coffeeEntryId String      @unique
+  userId        String
+  body          String
+  user          User        @relation(fields: [userId], references: [id])
+  coffeeEntry   CoffeeEntry @relation(fields: [coffeeEntryId], references: [id])
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model List {
+  id          String     @id @default(cuid())
+  userId      String
+  title       String
+  description String?
+  isPublic    Boolean    @default(false)
+  user        User       @relation(fields: [userId], references: [id])
+  items       ListItem[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model ListItem {
+  id            String      @id @default(cuid())
+  listId         String
+  coffeeEntryId  String?
+  note           String?
+  list           List        @relation(fields: [listId], references: [id])
+  coffeeEntry    CoffeeEntry? @relation(fields: [coffeeEntryId], references: [id])
+  createdAt      DateTime    @default(now())
+}
+
+model Tag {
+  id        String        @id @default(cuid())
+  name      String        @unique
+  entries   CoffeeEntry[]
+}
+
+// TODO(v2): Follow model
+// TODO(v2): Comment model
+// TODO(v2): Like model
+// TODO(v2): ActivityFeed model
+// TODO(v2): Shop page entities and recommendation signals
