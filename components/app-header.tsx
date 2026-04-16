@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import { getCurrentUser } from "@/lib/auth";
 import { cn } from "@/lib/utils";
@@ -19,8 +20,9 @@ export function AppHeader({ activePath }: { activePath: string }) {
   return (
     <header className="border-b border-stone-200 bg-stone-50/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
-        <Link href="/" className="text-lg font-semibold tracking-tight text-stone-900">
-          Sippd
+        <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-stone-900">
+          <Image src="/logo.svg" alt="Sippd logo" width={28} height={28} priority />
+          <span>Sippd</span>
         </Link>
         <nav className="hidden gap-4 md:flex">
           {navItems.map((item) => (
