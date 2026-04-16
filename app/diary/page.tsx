@@ -13,9 +13,14 @@ export default function DiaryPage() {
       <main className="mx-auto w-full max-w-4xl px-5 py-8">
         <h1 className="mb-5 text-2xl font-semibold tracking-tight">Diary</h1>
         <div className="space-y-4">
-          {entries.map((entry) => (
-            <EntryCard key={entry.id} entry={entry} />
-          ))}
+          {entries.length ? (
+            entries.map((entry) => <EntryCard key={entry.id} entry={entry} />)
+          ) : (
+            <div className="space-y-2 rounded-xl border border-dashed border-stone-300 bg-white p-6">
+              <p className="font-medium text-stone-800">No sips logged yet.</p>
+              <p className="text-sm text-stone-600">Start your Sip Log with your first great cup.</p>
+            </div>
+          )}
         </div>
       </main>
     </div>

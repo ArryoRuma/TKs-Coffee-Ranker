@@ -30,16 +30,20 @@ export default function DashboardPage() {
         </section>
 
         <section className="flex items-center justify-between">
-          <h1 className="text-2xl font-semibold tracking-tight">Recent diary entries</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">Recent Sips</h1>
           <Link href="/entries/new">
             <Button>Add new entry</Button>
           </Link>
         </section>
 
         <section className="grid gap-4 md:grid-cols-2">
-          {entries.map((entry) => (
-            <EntryCard key={entry.id} entry={entry} />
-          ))}
+          {entries.length ? (
+            entries.map((entry) => <EntryCard key={entry.id} entry={entry} />)
+          ) : (
+            <div className="rounded-xl border border-dashed border-stone-300 bg-white p-6 text-sm text-stone-600">
+              No Recent Sips yet.
+            </div>
+          )}
         </section>
       </main>
     </div>
