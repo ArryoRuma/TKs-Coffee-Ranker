@@ -127,4 +127,32 @@ export const wantToTry: WantToTryItem[] = [
   { id: "w3", cafe: "Piknik Kopi", drink: "Cascara Tonic", city: "Yogyakarta" },
 ];
 
+export type List = {
+  id: string;
+  userId: string;
+  title: string;
+  description: string;
+  isPublic: boolean;
+  entryIds: string[];
+};
+
+export const lists: List[] = [
+  {
+    id: "l1",
+    userId: "u1",
+    title: "Best of Jakarta 2026",
+    description: "Top coffee spots I've visited in Jakarta this year.",
+    isPublic: true,
+    entryIds: ["e1", "e2"],
+  },
+  {
+    id: "l2",
+    userId: "u1",
+    title: "Light Roast Favourites",
+    description: "All the bright, fruity, and floral cups worth revisiting.",
+    isPublic: false,
+    entryIds: ["e1"],
+  },
+];
+
 export const demoUserId = "u1";

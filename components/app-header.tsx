@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { getCurrentUser } from "@/lib/auth";
+import { auth, getCurrentUser, signOut } from "@/lib/auth";
 import { cn } from "@/lib/utils";
+import { MobileNav } from "@/components/mobile-nav";
 
 const navItems = [
   { href: "/dashboard", label: "Home" },
@@ -14,15 +15,17 @@ const navItems = [
   { href: "/profile", label: "Profile" },
 ];
 
-export function AppHeader({ activePath }: { activePath: string }) {
-  const user = getCurrentUser();
+export async function AppHeader({ activePath }: { activePath: string }) {
+  // Demo mode: use sync helper. Real auth: check live session.
+  const demoUser = getCurrentUser();
+  const session = process.env.AUTH_GITHUB_ID ? await auth() : null;
+  const displayName = session?.user?.name ?? demoUser?.handle ?? null;
 
   return (
-    <header className="border-b border-stone-200 bg-stone-50/90 backdrop-blur">
+    <header className="relative border-b border-stone-200 bg-stone-50/90 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4">
         <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-stone-900">
           <Image src="/logo.svg" alt="Sippd logo" width={150} height={50} priority />
-          
         </Link>
         <nav className="hidden gap-4 md:flex">
           {navItems.map((item) => (
@@ -38,9 +41,26 @@ export function AppHeader({ activePath }: { activePath: string }) {
             </Link>
           ))}
         </nav>
-        <Link href="/auth/sign-in" className="text-sm text-stone-600 hover:text-stone-900">
-          {user ? user.handle : "Sign in"}
-        </Link>
+        <div className="flex items-center gap-3">
+          {session?.user ? (
+            <form
+              action={async () => {
+                "use server";
+                await signOut({ redirectTo: "/" });
+              }}
+              className="hidden md:block"
+            >
+              <button type="submit" className="text-sm text-stone-600 hover:text-stone-900">
+                Sign out
+              </button>
+            </form>
+          ) : (
+            <Link href="/auth/sign-in" className="hidden text-sm text-stone-600 hover:text-stone-900 md:block">
+              {displayName ?? "Sign in"}
+            </Link>
+          )}
+          <MobileNav activePath={activePath} />
+        </div>
       </div>
     </header>
   );
