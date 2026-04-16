@@ -16,7 +16,10 @@ export default function DiaryPage() {
           {entries.length ? (
             entries.map((entry) => <EntryCard key={entry.id} entry={entry} />)
           ) : (
-            <p className="text-stone-600">Your Sip Log is empty. Start with your first great cup.</p>
+            <div className="space-y-2 rounded-xl border border-dashed border-stone-300 bg-white p-6">
+              <p className="font-medium text-stone-800">No sips logged yet.</p>
+              <p className="text-sm text-stone-600">Start your Sip Log with your first great cup.</p>
+            </div>
           )}
         </div>
       </main>
