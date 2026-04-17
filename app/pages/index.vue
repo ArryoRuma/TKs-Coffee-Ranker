@@ -1,5 +1,10 @@
 <script setup lang="ts">
-definePageMeta({ layout: "landing" });
+import type { ButtonProps } from "@nuxt/ui";
+
+definePageMeta({ layout: "landing", colorMode: "dark" });
+
+type FeatureCard = { title: string; body: string; icon?: string };
+type MetricItem = { value: string; label: string; class?: string };
 
 type LandingContent = {
   seo: { title: string; description: string };
@@ -12,8 +17,9 @@ type LandingContent = {
     secondaryCta: { label: string; to: string };
   };
   socialProof: string;
-  howItWorks: { title: string; cards: Array<{ title: string; body: string }> };
-  coreFeatures: { title: string; cards: Array<{ title: string; body: string }> };
+  howItWorks: { headline: string; title: string; cards: FeatureCard[] };
+  coreFeatures: { headline: string; title: string; description: string; cards: FeatureCard[] };
+  metrics: { headline: string; title: string; description: string; items: MetricItem[] };
   valueProps: Array<{ title: string; body: string }>;
   cta: { title: string; body: string; button: { label: string; to: string } };
   footer: string;
@@ -25,7 +31,7 @@ const fallbackContent: LandingContent = {
     description: "Sippd is your personal coffee log to rate, review, and remember every cup.",
   },
   hero: {
-    eyebrow: "Sippd",
+    eyebrow: "Now with Wanna Sip lists",
     title: "Track every sip.",
     lead: "Sippd is your personal coffee log to rate, review, and remember every cup.",
     supporting: "From your morning latte to your weekend pour-over, never forget what you loved.",
@@ -34,22 +40,36 @@ const fallbackContent: LandingContent = {
   },
   socialProof: "Join people who are finally remembering what they actually like.",
   howItWorks: {
-    title: "How it works",
+    headline: "How it works",
+    title: "Three steps to knowing your taste.",
     cards: [
-      { title: "1. Log a Sip", body: "Add what you are drinking, where you got it, and your Sip Score." },
-      { title: "2. Build Your Taste", body: "Over time, identify patterns in what you love and what you skip." },
-      { title: "3. Never Forget a Great Cup", body: "Your Sip Log becomes your personal memory for coffee." },
+      { title: "1. Log a Sip", body: "Add what you are drinking, where you got it, and your Sip Score.", icon: "i-lucide-pen-line" },
+      { title: "2. Build Your Taste", body: "Over time, identify patterns in what you love and what you skip.", icon: "i-lucide-trending-up" },
+      { title: "3. Never Forget a Great Cup", body: "Your Sip Log becomes your personal memory for coffee.", icon: "i-lucide-brain" },
     ],
   },
   coreFeatures: {
-    title: "Core features",
+    headline: "Features",
+    title: "Everything your coffee habit needs.",
+    description: "From your first sip to your all-time favorites, Sippd has every tool to build your coffee memory.",
     cards: [
-      { title: "Log Every Coffee", body: "Track drinks, cafes, roasters, and tasting notes in seconds." },
-      { title: "Sip Score", body: "Rate each coffee so your favorites naturally rise to the top." },
-      { title: "Your Sip Log", body: "Keep a clean, scrollable history of every coffee you had." },
-      { title: "Saved Sips", body: "Bookmark coffees you want to come back to." },
-      { title: "Wanna Sip", body: "Maintain a running list of coffees, cafes, and beans to try next." },
-      { title: "Top Sips", body: "See your all-time best coffees automatically organized." },
+      { title: "Log Every Coffee", body: "Track drinks, cafes, roasters, and tasting notes in seconds.", icon: "i-lucide-coffee" },
+      { title: "Sip Score", body: "Rate each coffee so your favorites naturally rise to the top.", icon: "i-lucide-star" },
+      { title: "Your Sip Log", body: "Keep a clean, scrollable history of every coffee you had.", icon: "i-lucide-scroll-text" },
+      { title: "Saved Sips", body: "Bookmark coffees you want to come back to.", icon: "i-lucide-bookmark" },
+      { title: "Wanna Sip", body: "Maintain a running list of coffees, cafes, and beans to try next.", icon: "i-lucide-list-todo" },
+      { title: "Top Sips", body: "See your all-time best coffees automatically organized.", icon: "i-lucide-trophy" },
+    ],
+  },
+  metrics: {
+    headline: "By the numbers",
+    title: "Built around your coffee habit.",
+    description: "Simple, fast, and yours. Every number that matters for building your personal coffee memory.",
+    items: [
+      { value: "< 5s", label: "Time to log", class: "text-primary" },
+      { value: "100%", label: "Your data", class: "text-success" },
+      { value: "∞", label: "Coffees tracked", class: "text-info" },
+      { value: "0", label: "Forgotten great cups", class: "text-warning" },
     ],
   },
   valueProps: [
@@ -80,36 +100,190 @@ useSeoMeta({
   title: () => content.value.seo.title,
   description: () => content.value.seo.description,
 });
+
+const heroLinks = computed<ButtonProps[]>(() => [
+  {
+    label: content.value.hero.primaryCta.label,
+    to: content.value.hero.primaryCta.to,
+    color: "primary",
+    size: "xl",
+  },
+  {
+    label: content.value.hero.secondaryCta.label,
+    to: content.value.hero.secondaryCta.to,
+    color: "neutral",
+    variant: "soft",
+    trailingIcon: "i-lucide-arrow-right",
+    size: "xl",
+  },
+]);
+
+const ctaLinks = computed<ButtonProps[]>(() => [
+  {
+    label: content.value.cta.button.label,
+    to: content.value.cta.button.to,
+    color: "primary",
+    size: "xl",
+  },
+]);
 </script>
 
 <template>
-  <main class="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-10 px-5 py-16 md:gap-14">
-    <MarketingLandingHero v-bind="content.hero" />
+  <div>
+    <!-- Hero -->
+    <UPageHero
+      :ui="{
+        wrapper: 'flex flex-col items-center',
+        title: 'sm:text-6xl lg:text-7xl tracking-tighter leading-[1.05]',
+        description: 'mt-5 max-w-xl mx-auto text-base sm:text-lg leading-relaxed text-default',
+        links: 'gap-3',
+      }"
+    >
+      <template #headline>
+        <UBadge
+          color="neutral"
+          variant="soft"
+          :label="content.hero.eyebrow"
+          class="rounded-full px-3 py-1.5 gap-1.5 bg-white/5 backdrop-blur"
+        >
+          <template #leading>
+            <UChip inset standalone :ui="{ base: 'animate-pulse ring-0' }" />
+          </template>
+        </UBadge>
+      </template>
 
-    <p class="text-center text-lg text-stone-700">
-      {{ content.socialProof }}
-    </p>
+      <template #title>
+        {{ content.hero.title }}
+      </template>
 
-    <MarketingContentCardSection
+      <template #description>
+        {{ content.hero.lead }}<br class="hidden sm:block">
+        {{ content.hero.supporting }}
+      </template>
+
+      <template #links>
+        <div class="flex flex-wrap justify-center gap-3">
+          <UButton v-for="link in heroLinks" :key="link.label as string" v-bind="link" />
+        </div>
+      </template>
+    </UPageHero>
+
+    <!-- How it works -->
+    <UPageSection
+      :ui="{
+        root: 'py-24 sm:py-32',
+        container: 'max-w-5xl',
+        headline: 'font-mono font-medium text-xs text-primary uppercase tracking-[0.12em] text-center',
+        title: 'max-w-lg mx-auto',
+      }"
+      :headline="content.howItWorks.headline"
       :title="content.howItWorks.title"
-      :cards="content.howItWorks.cards"
-      columns="3"
-    />
+    >
+      <div class="rounded-2xl border border-default bg-default overflow-hidden">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-px">
+          <UPageCard
+            v-for="card in content.howItWorks.cards"
+            :key="card.title"
+            :icon="card.icon"
+            :title="card.title"
+            :description="card.body"
+            variant="naked"
+            class="rounded-none duration-300"
+            :ui="{
+              leading: 'mb-5 flex size-9 justify-center rounded-lg bg-primary/10',
+              leadingIcon: 'size-5 text-primary',
+              title: 'text-sm font-semibold tracking-tight',
+              description: 'text-sm leading-relaxed text-dimmed mt-1',
+            }"
+          />
+        </div>
+      </div>
+    </UPageSection>
 
-    <MarketingContentCardSection
+    <!-- Features -->
+    <UPageSection
+      :ui="{
+        root: 'py-24 sm:py-32',
+        container: 'max-w-5xl',
+        headline: 'font-mono font-medium text-xs text-primary uppercase tracking-[0.12em] text-center',
+        title: 'max-w-lg mx-auto',
+        description: 'max-w-md mx-auto text-dimmed',
+      }"
+      :headline="content.coreFeatures.headline"
       :title="content.coreFeatures.title"
-      :cards="content.coreFeatures.cards"
-      columns="2"
-    />
+      :description="content.coreFeatures.description"
+    >
+      <div class="rounded-2xl border border-default bg-default overflow-hidden">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px">
+          <UPageCard
+            v-for="card in content.coreFeatures.cards"
+            :key="card.title"
+            :icon="card.icon"
+            :title="card.title"
+            :description="card.body"
+            variant="naked"
+            class="rounded-none duration-300"
+            :ui="{
+              leading: 'mb-5 flex size-9 justify-center rounded-lg bg-primary/10',
+              leadingIcon: 'size-5 text-primary',
+              title: 'text-sm font-semibold tracking-tight',
+              description: 'text-sm leading-relaxed sm:line-clamp-2 lg:line-clamp-3 text-dimmed mt-1',
+            }"
+          />
+        </div>
+      </div>
+    </UPageSection>
 
-    <MarketingValuePropsGrid :value-props="content.valueProps" />
+    <!-- Metrics -->
+    <UPageSection
+      :ui="{
+        root: 'py-24 sm:py-32',
+        container: 'max-w-5xl',
+        headline: 'font-mono font-medium text-xs text-primary uppercase tracking-[0.12em] text-center',
+        title: 'max-w-lg mx-auto',
+        description: 'max-w-md mx-auto text-dimmed',
+      }"
+      :headline="content.metrics.headline"
+      :title="content.metrics.title"
+      :description="content.metrics.description"
+    >
+      <div class="rounded-2xl border border-default bg-default overflow-hidden">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px">
+          <UPageCard
+            v-for="metric in content.metrics.items"
+            :key="metric.label"
+            :title="metric.value"
+            :description="metric.label"
+            variant="naked"
+            class="rounded-none duration-300"
+            :ui="{
+              container: 'text-center',
+              wrapper: 'items-center',
+              title: ['text-4xl font-bold tracking-tight leading-none', metric.class],
+              description: 'font-mono text-xs uppercase tracking-[0.06em] text-dimmed mt-3',
+            }"
+          />
+        </div>
+      </div>
+    </UPageSection>
 
-    <MarketingLandingCta
+    <!-- CTA -->
+    <UPageCTA
+      variant="naked"
       :title="content.cta.title"
-      :body="content.cta.body"
-      :button="content.cta.button"
+      :description="content.cta.body"
+      :links="ctaLinks"
+      :ui="{
+        root: 'py-24 sm:py-32',
+        container: 'max-w-3xl text-center',
+        title: 'lg:text-5xl tracking-tighter whitespace-pre-line',
+        description: 'mx-auto max-w-sm leading-relaxed text-dimmed',
+        links: 'justify-center',
+      }"
     />
 
-    <footer class="pb-2 text-center text-sm text-stone-500">{{ content.footer }}</footer>
-  </main>
+    <UContainer>
+      <footer class="pb-8 text-center text-sm text-dimmed">{{ content.footer }}</footer>
+    </UContainer>
+  </div>
 </template>
