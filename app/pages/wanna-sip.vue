@@ -26,7 +26,7 @@ const fallbackContent: WannaSipContent = {
 };
 
 const { data: wannaSipData } = await useAsyncData("wanna-sip-content", () =>
-  queryCollection("content").path("/wanna-sip/index").first()
+  queryCollection("content").where("stem", "=", "wanna-sip/index").first()
 );
 
 const content = computed(() => (wannaSipData.value as WannaSipContent | null) ?? fallbackContent);

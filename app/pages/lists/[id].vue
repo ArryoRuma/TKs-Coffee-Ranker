@@ -28,7 +28,7 @@ const fallbackContent: ListsDetailContent = {
 };
 
 const { data: listsDetailData } = await useAsyncData("lists-detail-content", () =>
-  queryCollection("content").path("/lists/detail").first()
+  queryCollection("content").where("stem", "=", "lists/detail").first()
 );
 
 const content = computed(() => (listsDetailData.value as ListsDetailContent | null) ?? fallbackContent);

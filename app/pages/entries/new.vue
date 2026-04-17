@@ -10,7 +10,7 @@ const fallbackContent: EntryNewContent = {
 };
 
 const { data: entryNewData } = await useAsyncData("entry-new-content", () =>
-  queryCollection("content").path("/entries/new").first()
+  queryCollection("content").where("stem", "=", "entries/new").first()
 );
 
 const content = computed(() => (entryNewData.value as EntryNewContent | null) ?? fallbackContent);

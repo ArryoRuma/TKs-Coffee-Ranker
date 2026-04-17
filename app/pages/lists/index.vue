@@ -40,7 +40,7 @@ const fallbackContent: ListsIndexContent = {
 };
 
 const { data: listsIndexData } = await useAsyncData("lists-index-content", () =>
-  queryCollection("content").path("/lists/index").first()
+  queryCollection("content").where("stem", "=", "lists/index").first()
 );
 
 const content = computed(() => (listsIndexData.value as ListsIndexContent | null) ?? fallbackContent);

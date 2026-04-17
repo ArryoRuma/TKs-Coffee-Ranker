@@ -31,7 +31,7 @@ const fallbackContent: DashboardContent = {
 };
 
 const { data: dashboardData } = await useAsyncData("dashboard-content", () =>
-  queryCollection("content").path("/dashboard/overview").first()
+  queryCollection("content").where("stem", "=", "dashboard/overview").first()
 );
 
 const content = computed(() => (dashboardData.value as DashboardContent | null) ?? fallbackContent);

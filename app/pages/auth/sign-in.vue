@@ -22,7 +22,7 @@ const fallbackContent: SignInContent = {
 };
 
 const { data: signInData } = await useAsyncData("sign-in-content", () =>
-  queryCollection("content").path("/auth/sign-in").first()
+  queryCollection("content").where("stem", "=", "auth/sign-in").first()
 );
 
 const content = computed(() => (signInData.value as SignInContent | null) ?? fallbackContent);

@@ -16,7 +16,7 @@ const fallbackContent: DiaryContent = {
 };
 
 const { data: diaryData } = await useAsyncData("diary-content", () =>
-  queryCollection("content").path("/diary/index").first()
+  queryCollection("content").where("stem", "=", "diary/index").first()
 );
 
 const content = computed(() => (diaryData.value as DiaryContent | null) ?? fallbackContent);

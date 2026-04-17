@@ -16,7 +16,7 @@ const fallbackContent: EntryEditContent = {
 };
 
 const { data: entryEditData } = await useAsyncData("entry-edit-content", () =>
-  queryCollection("content").path("/entries/edit").first()
+  queryCollection("content").where("stem", "=", "entries/edit").first()
 );
 
 const content = computed(() => (entryEditData.value as EntryEditContent | null) ?? fallbackContent);

@@ -26,7 +26,7 @@ const fallbackContent: ProfileContent = {
 };
 
 const { data: profileData } = await useAsyncData("profile-content", () =>
-  queryCollection("content").path("/profile/index").first()
+  queryCollection("content").where("stem", "=", "profile/index").first()
 );
 
 const content = computed(() => (profileData.value as ProfileContent | null) ?? fallbackContent);

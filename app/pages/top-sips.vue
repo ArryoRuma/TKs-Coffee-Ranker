@@ -16,7 +16,7 @@ const fallbackContent: TopSipsContent = {
 };
 
 const { data: topSipsData } = await useAsyncData("top-sips-content", () =>
-  queryCollection("content").path("/top-sips/index").first()
+  queryCollection("content").where("stem", "=", "top-sips/index").first()
 );
 
 const content = computed(() => (topSipsData.value as TopSipsContent | null) ?? fallbackContent);

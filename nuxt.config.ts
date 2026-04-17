@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   srcDir: "app",
   serverDir: "server",
   devtools: { enabled: true },
-  modules: ["@nuxt/content", "@nuxt/ui", "@nuxtjs/supabase"],
+  modules: ["@nuxt/content", "@nuxt/ui", "@nuxtjs/supabase", "@vueuse/nuxt", "motion-v/nuxt"],
   css: ["~/assets/css/main.css"],
   runtimeConfig: {
     public: {

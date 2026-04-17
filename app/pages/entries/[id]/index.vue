@@ -26,7 +26,7 @@ const fallbackContent: EntryDetailContent = {
 };
 
 const { data: entryDetailData } = await useAsyncData("entry-detail-content", () =>
-  queryCollection("content").path("/entries/detail").first()
+  queryCollection("content").where("stem", "=", "entries/detail").first()
 );
 
 const content = computed(() => (entryDetailData.value as EntryDetailContent | null) ?? fallbackContent);
