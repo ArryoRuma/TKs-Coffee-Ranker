@@ -8,9 +8,9 @@ Sippd is a social coffee logging app with Letterboxd/Untappd energy — your per
 - Nuxt UI
 - Supabase module integration (demo-mode data currently served locally)
 - Tailwind CSS
-- shadcn/ui-style component primitives (`components/ui`)
+- Legacy (Next): shadcn/ui-style component primitives (`components/ui`)
 - Zod validation
-- Auth scaffold with demo-user mode
+- Legacy (Next): auth scaffold with demo-user mode
 
 ## Product pillars included
 
