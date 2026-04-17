@@ -7,12 +7,16 @@ type DemoEntry = {
   notes: string;
 };
 
+const runtimeConfig = useRuntimeConfig();
+const demoMode = runtimeConfig.public.demoMode;
+
 const { data: entries } = await useFetch<DemoEntry[]>("/api/entries");
 </script>
 
 <template>
   <div class="space-y-4">
     <UAlert
+      v-if="demoMode"
       color="info"
       variant="subtle"
       title="Demo mode is enabled"
