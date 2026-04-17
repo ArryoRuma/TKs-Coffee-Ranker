@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-01-15",
-  srcDir: "nuxt",
-  serverDir: "nuxt/server",
+  srcDir: "app",
+  serverDir: "app/server",
   devtools: { enabled: true },
   modules: ["@nuxt/content", "@nuxt/ui", "@nuxtjs/supabase"],
   css: ["~/assets/css/main.css"],

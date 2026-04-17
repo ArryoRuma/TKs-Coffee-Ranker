@@ -9,7 +9,7 @@
     "start": "nuxt start",
     "preview": "nuxt preview",
     "lint": "eslint",
-    "typecheck": "nuxi typecheck",
+    "typecheck": "node scripts/typecheck.mjs",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
