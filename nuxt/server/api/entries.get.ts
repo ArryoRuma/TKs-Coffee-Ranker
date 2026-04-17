@@ -23,5 +23,14 @@ const demoEntries = [
 ];
 
 export default defineEventHandler(() => {
+  const config = useRuntimeConfig();
+
+  if (!config.public?.demoMode) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: "Not Found",
+    });
+  }
+
   return demoEntries;
 });
