@@ -1,17 +1,15 @@
 import { defineConfig, globalIgnores } from "eslint/config";
-import nextVitals from "eslint-config-next/core-web-vitals";
-import nextTs from "eslint-config-next/typescript";
 import pluginVue from "eslint-plugin-vue";
 import vueParser from "vue-eslint-parser";
+import tsParser from "@typescript-eslint/parser";
 
 const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
   {
     files: ["nuxt/**/*.vue"],
     languageOptions: {
       parser: vueParser,
       parserOptions: {
+        parser: tsParser,
         ecmaVersion: "latest",
         sourceType: "module",
       },
@@ -23,15 +21,20 @@ const eslintConfig = defineConfig([
       ...pluginVue.configs["flat/recommended"].rules,
     },
   },
-  // Override default ignores of eslint-config-next.
+  {
+    files: ["nuxt/**/*.ts"],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+      },
+    },
+  },
   globalIgnores([
-    // Default ignores of eslint-config-next:
-    ".next/**",
     ".nuxt/**",
     ".output/**",
-    "out/**",
-    "build/**",
-    "next-env.d.ts",
+    "node_modules/**",
   ]),
 ]);
 

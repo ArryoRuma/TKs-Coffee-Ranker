@@ -1,0 +1,7 @@
+backLabel: Back to Lists
+empty: This list has no entries yet.
+labels:
+  public: Public
+  private: Private
+  sipSingular: sip
+  sipPlural: sips

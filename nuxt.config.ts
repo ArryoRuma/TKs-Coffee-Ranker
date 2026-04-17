@@ -1,8 +1,15 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-01-15",
   srcDir: "nuxt",
+  serverDir: "nuxt/server",
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@nuxtjs/supabase"],
+  modules: ["@nuxt/content", "@nuxt/ui", "@nuxtjs/supabase"],
+  css: ["~/assets/css/main.css"],
+  runtimeConfig: {
+    public: {
+      demoMode: !process.env.SUPABASE_URL || process.env.DEMO_USER_MODE === "true",
+    },
+  },
   supabase: {
     url: process.env.SUPABASE_URL || "http://127.0.0.1:54321",
     key: process.env.SUPABASE_ANON_KEY || "demo-anon-key",

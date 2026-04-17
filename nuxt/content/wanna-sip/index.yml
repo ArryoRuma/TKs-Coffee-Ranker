@@ -1,0 +1,8 @@
+title: Wanna Sip
+form:
+  title: Add to your wishlist
+  drinkPlaceholder: Drink (e.g. Geisha V60)
+  cafePlaceholder: Cafe
+  cityPlaceholder: City (optional)
+  submit: Add to Wanna Sip
+empty: Nothing in Wanna Sip yet. Save coffees you want to try next.

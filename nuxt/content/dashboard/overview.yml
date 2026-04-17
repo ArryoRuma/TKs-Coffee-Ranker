@@ -1,0 +1,22 @@
+header:
+  eyebrow: Home
+  title: Welcome back, {firstName}
+  description: Your Taste, Logged - all in one place.
+stats:
+  - key: totalSips
+    label: Total Sips
+    icon: i-lucide-notebook-tabs
+  - key: topSips
+    label: Top Sips
+    icon: i-lucide-trophy
+  - key: signatureSip
+    label: Signature Sip
+    icon: i-lucide-coffee
+recent:
+  title: Recent Sips
+  cta:
+    label: Log a Sip
+    to: /entries/new
+emptyState:
+  title: No Recent Sips yet.
+  body: Start with your first great cup.

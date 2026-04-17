@@ -1,0 +1,11 @@
+
+> sippd@0.1.0 typecheck /Users/larryontruman/Desktop/Coding/5_Experiments/TKs-Coffee-Ranker
+> nuxi typecheck
+
+ℹ Nuxt Icon server bundle mode is set to local
+
+ WARN  Duplicated imports "useAppConfig", the one from "nitropack/runtime/internal/config" has been ignored and "/Users/larryontruman/Desktop/Coding/5_Experiments/TKs-Coffee-Ranker/node_modules/@nuxt/nitro-server/dist/runtime/utils/app-config" is used
+
+
+ WARN  Duplicated imports "useAppConfig", the one from "nitropack/runtime/internal/config" has been ignored and "/Users/larryontruman/Desktop/Coding/5_Experiments/TKs-Coffee-Ranker/node_modules/@nuxt/nitro-server/dist/runtime/utils/app-config" is used
+

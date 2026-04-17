@@ -1,0 +1,8 @@
+title: Welcome to Sippd
+description: Sign in to start logging your coffee journey.
+primary:
+  label: Continue with GitHub
+secondary:
+  prefix: Just exploring?
+  label: Continue in demo mode
+  to: /dashboard

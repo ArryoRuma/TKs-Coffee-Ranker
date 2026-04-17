@@ -1,0 +1,7 @@
+actions:
+  edit: Edit
+fields:
+  sipScore: Sip Score
+  saveForLater: Save for Later
+  yes: Yes
+  no: No

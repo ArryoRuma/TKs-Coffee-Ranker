@@ -1,0 +1,11 @@
+tasteIdentityTitle: Taste identity
+favoriteDrinkLabel: Favourite drink
+actions:
+  edit: Edit
+  save: Save
+  cancel: Cancel
+placeholders:
+  displayName: Display name
+  homeCity: Home city
+  favoriteDrink: Favourite drink
+  bio: Bio

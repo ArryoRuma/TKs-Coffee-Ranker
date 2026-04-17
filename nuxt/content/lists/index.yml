@@ -1,0 +1,16 @@
+title: My Lists
+actions:
+  create: New List
+  cancel: Cancel
+form:
+  title: Create a new list
+  listName: List name
+  description: Description (optional)
+  makePublic: Make this list public
+  submit: Create List
+empty: No lists yet. Create one to organise your sips.
+labels:
+  public: Public
+  private: Private
+  sipSingular: sip
+  sipPlural: sips
