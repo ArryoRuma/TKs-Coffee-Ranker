@@ -67,10 +67,15 @@ Coffee tasting often needs finer granularity than 1-5 (especially between cups t
 ## Project structure
 
 ```text
-nuxt/
+nuxt/                  # current Nuxt application surface
   app.vue
   pages/index.vue
   server/api/entries.get.ts
+
+app/                   # legacy Next.js app surface retained during migration
+components/            # shared/legacy UI components
+lib/                   # shared/legacy utilities
+prisma/                # Prisma schema, migrations, and TODO scaffolds
 ```
 
 ## MVP next steps
